@@ -1,6 +1,8 @@
 package com.example.platter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +11,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    private Button btn_diner, btn_admin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn_diner = findViewById(R.id.btn_Diner);
-        Button btn_admin = findViewById(R.id.btn_Admin);
+         btn_diner = findViewById(R.id.btn_Diner);
+         btn_admin = findViewById(R.id.btn_Admin);
 
         btn_diner.setOnClickListener(this);
         btn_admin.setOnClickListener(this);
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onClick(View view) {
             switch(view.getId()){
                 case R.id.btn_Diner:
-                    DinerLogin();
+                    loadFragment(new DinerLogin());
                     Toast.makeText(this,"Welcome to Platter!",Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.btn_Admin:
@@ -35,14 +38,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this,"Welcome Admin",Toast.LENGTH_SHORT).show();
                     break;
             }
+            btn_diner.setVisibility(View.GONE);
+            btn_admin.setVisibility(View.GONE);
         }
     public void HomeScreen(){
         Intent intent = new Intent(this,HomeScreen.class);
         startActivity(intent);
     }
-    public void DinerLogin(){
-        Intent intent = new Intent(this, DinerLogin.class);
-        startActivity(intent);
+
+    private void loadFragment(DinerLogin dinerlogin) {
+        FragmentManager fa = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fa.beginTransaction();
+        fragmentTransaction.replace(R.id.frame,dinerlogin);
+        fragmentTransaction.commit();
     }
+
 
 }
