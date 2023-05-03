@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this,"Welcome to Platter!",Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.btn_Admin:
-                    HomeScreen();
+                    loadFragment(new AdminLogin());
                     Toast.makeText(this,"Welcome Admin",Toast.LENGTH_SHORT).show();
                     break;
             }
@@ -50,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager fa = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fa.beginTransaction();
         fragmentTransaction.replace(R.id.frame,dinerlogin);
+        fragmentTransaction.commit();
+    }
+    private void loadFragment(AdminLogin adminlogin) {
+        FragmentManager fa = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fa.beginTransaction();
+        fragmentTransaction.replace(R.id.frame,adminlogin);
         fragmentTransaction.commit();
     }
 
