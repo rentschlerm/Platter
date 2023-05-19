@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.btn_Diner:
                     loadFragment(new DinerLogin());
                     Toast.makeText(this,"Please register before you proceed!",Toast.LENGTH_SHORT).show();
+                    btn_diner_proceed.setVisibility(View.VISIBLE);
                     break;
                 case R.id.btn_Admin:
                     AdminLoginActivity();
