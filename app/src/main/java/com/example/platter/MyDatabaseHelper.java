@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -24,33 +25,23 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
     // Define the SQL statement to create the database table
     private static final String CREATE_ADMIN_TABLE = (
             "Create Table If Not Exists Admin(Admin_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    " Admin_UserName TEXT, Admin_Password TEXT, Role_ID INTEGER, " +
-                    "FOREIGN KEY(Role_ID) REFERENCES Role(Role_ID));");
+                    " Admin_UserName TEXT, Admin_Password TEXT);");
 
     private static final String CREATE_DINER_TABLE = (
             "Create Table If Not Exists Diner(Diner_ID	INTEGER PRIMARY KEY AUTOINCREMENT,"+
             "Diner_FirstName	TEXT,"+
             "Diner_LastName	TEXT,"+
             "Diner_Email	TEXT,"+
-            "Diner_ContactNumber	NUMERIC,"+
-            "Role_ID	INTEGER,"+
-    "FOREIGN KEY(Role_ID) REFERENCES Role(Role_ID))");
+            "Diner_ContactNumber	NUMERIC)");
 
     private static final String CREATE_MenuList_TABLE = (
             "Create Table If Not Exists MenuList (Food_ID INTEGER PRIMARY KEY AUTOINCREMENT,"+
             "Food_Name	TEXT,"+
             "Food_Image	BLOB,"+
             "Food_Price	INTEGER,"+
-            "Food_Quantity	INTEGER,"+
-            "Category_ID	INTEGER,"+
-    "FOREIGN KEY(Category_ID) REFERENCES Food_Category(Category_ID))");
+            "Food_Quantity	INTEGER)");
 
-    private static final String CREATE_FoodCategory_TABLE = (
-            "Create Table If Not Exists Food_Category(Category_ID INTEGER PRIMARY KEY," +
-                    "Category_Name TEXT)");
-    private static final String CREATE_Role_TABLE = (
-            "Create Table If Not Exists Role(Role_ID INTEGER PRIMARY KEY," +
-                    "Role_Name TEXT)");
+
 
     // Implement the constructor to create the database
     public MyDatabaseHelper(Context context) {
@@ -63,8 +54,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_ADMIN_TABLE);
         db.execSQL(CREATE_DINER_TABLE);
         db.execSQL(CREATE_MenuList_TABLE);
-        db.execSQL(CREATE_FoodCategory_TABLE);
-        db.execSQL(CREATE_Role_TABLE);
 
     }
 
@@ -80,11 +69,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
 //        onCreate(db);
     }
 
-    public void queryData(String sql)
-    {
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(sql);
-    }
+
 
     // Define methods to insert, update, and delete data from the database
     public boolean insertDataAdmin(String Admin_UserName, String Admin_Password) {
@@ -104,12 +89,27 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
 //        db.close();
 //        return rowId;
     }
+    public void queryData(String sql)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(sql);
+    }
+    public void insertData(String Food_Name, String Food_Price,String Food_Quantity, byte[] Food_Image)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "Insert into MenuList (Food_Name,Food_Image,Food_Price,Food_Quantity) Values (?,?,?,?)";
 
-//public void insertData(String name, String price, byte[] image)
-//{
-//    SQLiteDatabase db = getWritableDatabase();
-//    String sql =
-//}
+        SQLiteStatement statement = db.compileStatement(sql);
+        statement.clearBindings();
+
+        statement.bindString(1,Food_Name);
+        statement.bindBlob(2,Food_Image);
+        statement.bindString(3,Food_Price);
+        statement.bindString(4,Food_Quantity);
+
+        statement.executeInsert();
+    }
+
 
     public boolean checkusername(String Admin_UserName)
     {
@@ -166,6 +166,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper{
 //        Cursor cursor = db.query(TABLE_NAME, projection, null, null, null, null, sortOrder);
 //        return cursor;
 //    }
+    public Cursor getData(String sql)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        return db.rawQuery(sql,null);
+    }
 //
 //    public void deleteAllData() {
 //        SQLiteDatabase db = getReadableDatabase();
