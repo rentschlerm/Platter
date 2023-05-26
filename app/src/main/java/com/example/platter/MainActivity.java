@@ -1,8 +1,6 @@
 package com.example.platter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -37,11 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onClick(View view) {
             switch(view.getId()){
-                case R.id.btn_Diner:
-                    loadFragment(new DinerLogin());
-                    Toast.makeText(this,"Please register before you proceed!",Toast.LENGTH_SHORT).show();
-                    btn_diner_proceed.setVisibility(View.VISIBLE);
-                    break;
                 case R.id.btn_Admin:
                     AdminLoginActivity();
                     Toast.makeText(this,"Welcome Admin",Toast.LENGTH_SHORT).show();
@@ -56,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btn_admin.setVisibility(View.GONE);
         }
     public void HomeScreen(){
-        Intent intent = new Intent(this,HomeScreen.class);
+        Intent intent = new Intent(this, Food.class);
         startActivity(intent);
     }
     private void AdminLoginActivity()
@@ -65,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    private void loadFragment(DinerLogin dinerlogin) {
-        FragmentManager fa = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fa.beginTransaction();
-        fragmentTransaction.replace(R.id.frame,dinerlogin);
-        fragmentTransaction.commit();
-    }
+//    private void loadFragment(DinerLogin dinerlogin) {
+//        FragmentManager fa = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fa.beginTransaction();
+//        fragmentTransaction.replace(R.id.frame,dinerlogin);
+//        fragmentTransaction.commit();
+//    }
 
 
 

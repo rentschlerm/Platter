@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class AdminLoginActivity extends AppCompatActivity {
 
     EditText username,password;
-    Button loginbtn;
+    Button loginbtn,registerbtn;
     MyDatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,16 @@ public class AdminLoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         loginbtn = (Button) findViewById(R.id.loginbtn);
+        registerbtn = (Button) findViewById(R.id.registerBtn);
         db = new MyDatabaseHelper(this);
+
+        registerbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AdminRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +50,10 @@ public class AdminLoginActivity extends AppCompatActivity {
                     if(checkuserpass==true)
                     {
                         Toast.makeText(AdminLoginActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+
+                        Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
                         startActivity(intent);
+
                     }
                     else
                     {

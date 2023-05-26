@@ -15,20 +15,25 @@
         tools:targetApi="31">
         <activity
             android:name=".HomeScreenActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home_screen" />
+        <activity
+            android:name=".Food"
             android:exported="false" />
         <activity
             android:name=".MenuAddActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HomeScreenActivity"/>
         <activity
             android:name=".AdminLoginActivity"
             android:exported="false" />
         <activity
             android:name=".AdminRegisterActivity"
             android:exported="false" />
-        <activity
-            android:name=".DinerLogin"
-            android:exported="false"
-            android:label="@string/title_activity_home_screen" />
+<!--        <activity-->
+<!--            android:name=".DinerLogin"-->
+<!--            android:exported="false"-->
+<!--            android:label="@string/title_activity_home_screen" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -38,10 +43,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuList"
-            android:label="Menu List">
-
-        </activity>
+        <activity
+            android:name=".MenuList"
+            android:label="Menu List"
+            android:parentActivityName=".MenuAddActivity"/>
     </application>
 
 </manifest>

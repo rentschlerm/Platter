@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class MenuListAdapter extends BaseAdapter {
     private Context context;
     private int layout;
-    private ArrayList<HomeScreenActivity> menuList;
+    private ArrayList<Food> menuList;
 
-    public MenuListAdapter(Context context, int layout, ArrayList<HomeScreenActivity> menuList) {
+    public MenuListAdapter(Context context, int layout, ArrayList<Food> menuList) {
         this.context = context;
         this.layout = layout;
         this.menuList = menuList;
@@ -40,7 +40,7 @@ public class MenuListAdapter extends BaseAdapter {
     private class ViewHolder
     {
         ImageView imageView;
-        TextView txtName,txtPrice;
+        TextView txtName,feeEachItem;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MenuListAdapter extends BaseAdapter {
             row = inflater.inflate(layout, null);
 
             holder.txtName = (TextView) row.findViewById(R.id.txtName);
-            holder.txtPrice = (TextView) row.findViewById(R.id.txtPrice);
+            holder.feeEachItem = (TextView) row.findViewById(R.id.feeEachItem);
             holder.imageView = (ImageView) row.findViewById(R.id.imgFood);
             row.setTag(holder);
         }
@@ -61,10 +61,10 @@ public class MenuListAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        HomeScreenActivity menu = menuList.get(position);
+        Food menu = menuList.get(position);
 
         holder.txtName.setText(menu.getFood_Name());
-        holder.txtPrice.setText(menu.getFood_Price());
+        holder.feeEachItem.setText(menu.getFood_Price());
 
         byte[] foodImage = menu.getFood_Image();
         Bitmap bitmap = BitmapFactory.decodeByteArray(foodImage, 0, foodImage.length);

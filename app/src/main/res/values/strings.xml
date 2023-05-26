@@ -13,8 +13,8 @@
     <string name="btn_admin">Admin</string>
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_checkout">Check Out</string>
+    <string name="title_payment">Payment</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pagetitle">Welcome to Platter!</string>
@@ -22,4 +22,6 @@
     <string name="btn_dinerSubmit">Proceed</string>
     <string name="dinerName">Name</string>
     <string name="dinerEmailAddress">Email Address</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
