@@ -11,19 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="127dp"
         android:layout_marginTop="60dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addmenubtn"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginStart="196dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="43dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="13dp"
             android:backgroundTint="@color/white"
             android:text="Add Food"
             android:textColor="#FD4B13"
             android:textSize="14sp" />
+
+
 
     </LinearLayout>
 
@@ -44,17 +46,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/menuBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="43dp"
-        android:backgroundTint="@color/white"
-        android:text="Menu"
-        android:textColor="#FD4B13"
-        android:textSize="24sp" />
+    <ListView
+        android:id="@+id/menuListView"
+        android:layout_width="match_parent"
+        android:layout_height="419dp"
+        android:layout_marginTop="190dp"
+        android:columnWidth="120dp"
+        android:gravity="center"
+        android:padding="5dp" />
+
 
 </RelativeLayout>

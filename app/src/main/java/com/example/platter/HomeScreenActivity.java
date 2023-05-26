@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,7 +24,7 @@ import com.example.platter.databinding.ActivityHomeScreenBinding;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
-    Button addmenubtn, menuBtn;
+
     public static MyDatabaseHelper db;
     private ActivityHomeScreenBinding binding;
 
@@ -30,30 +32,11 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = new MyDatabaseHelper(this);
-        Cursor cursor = db.getData("SELECT * FROM MenuList");
 
 
         binding = ActivityHomeScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        addmenubtn = (Button) findViewById(R.id.addmenubtn);
-        menuBtn = (Button) findViewById(R.id.menuBtn);
 
-        menuBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MenuList.class);
-                startActivity(intent);
-            }
-        });
-
-        addmenubtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MenuAddActivity.class);
-                startActivity(intent);
-            }
-        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

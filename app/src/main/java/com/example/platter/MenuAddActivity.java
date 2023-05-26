@@ -26,7 +26,7 @@ import java.io.InputStream;
 public class MenuAddActivity extends AppCompatActivity {
 
     EditText editName,editPrice,editQty;
-    Button btnChoose, btnAdd, btnList;
+    Button btnChoose, btnAdd;
     ImageView imageView;
 
     final int REQUEST_CODE_GALLERY = 999;
@@ -71,13 +71,7 @@ public class MenuAddActivity extends AppCompatActivity {
                 }
             }
         });
-        btnList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MenuAddActivity.this, MenuList.class);
-                startActivity(intent);
-            }
-        });
+
     }
     public static byte[] imageViewToByte(ImageView image)
     {
@@ -133,7 +127,6 @@ public class MenuAddActivity extends AppCompatActivity {
         editQty = (EditText) findViewById(R.id.editQty);
         btnChoose = (Button) findViewById(R.id.btnChoose);
         btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnList = (Button) findViewById(R.id.btnList);
         imageView = (ImageView) findViewById(R.id.imageView);
     }
 }

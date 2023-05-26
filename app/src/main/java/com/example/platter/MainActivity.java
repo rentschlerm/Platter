@@ -13,11 +13,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_diner, btn_admin, btn_diner_proceed;
 
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
          btn_diner = findViewById(R.id.btn_Diner);
          btn_admin = findViewById(R.id.btn_Admin);
